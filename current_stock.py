@@ -71,7 +71,9 @@ class STOCK(Base):
         """
         return self.unit_cost * self.quantity
 
-    def change_supplier(self, new_supplier: str) -> None:
+    def change_supplier(self, new_supplier: Supplier) -> None:
+        if not isinstance(new_supplier, Supplier):
+            raise ValueError("new_supplier must be an instance of Supplier")
         self.supplier = new_supplier
 
     def get_supplier_details(self) -> str:
