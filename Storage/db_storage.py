@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from current_stock import current_stock, suppliers, received_goods
+from current_stock import STOCK, Supplier
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
@@ -9,7 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base
 
-classes = {"current_stock":current_stock, "suppliers":suppliers, "received_goods":received_goods}
+classes = {"current_stock":STOCK, "suppliers":Supplier}
 
 class DB_STORAGE:
     """interact with the MYSQL database"""
