@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 import unittest
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from current_stock import Base, STOCK, Supplier
 
 class TestStock(unittest.TestCase):
