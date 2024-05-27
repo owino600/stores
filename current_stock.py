@@ -81,4 +81,4 @@ class STOCK(Base):
         Returns:
             str: The supplier details of the current stock.
         """
-        return self.supplier.name if self.supplier else 'No supplier'
+        return self.supplier.name if self.supplier else 'No SSupplier'

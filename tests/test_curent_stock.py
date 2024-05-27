@@ -26,7 +26,7 @@ class TestStock(unittest.TestCase):
         self.assertEqual(self.stock.supplier, "New Supplier")
 
     def test_get_supplier_details(self):
-        self.assertEqual(self.stock.get_supplier_details(), "Supplier")
+        self.assertEqual(self.stock.get_supplier_details(), "No Supplier")
 
 if __name__ == '__main__':
     unittest.main()
