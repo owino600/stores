@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-import STORES
-from STORES import current_stock, suppliers, received_goods
+
+from current_stock import current_stock, suppliers, received_goods
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
