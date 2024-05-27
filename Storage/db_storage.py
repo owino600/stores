@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_base
+Base = declarative_base()
 
 classes = {"current_stock":STOCK, "suppliers":Supplier}
 
@@ -58,3 +58,19 @@ class DB_STORAGE:
         if cls not in classes:
             return None
         return self.__session.query(classes[cls]).get(id)
+
+STORE_MYSQL_USER = getenv('STORE_MYSQL_USER')
+STORE_MYSQL_PWD = getenv('STORE_MYSQL_PWD')
+STORE_MYSQL_HOST = getenv('STORE_MYSQL_HOST')
+STORE_MYSQL_DB = getenv('STORE_MYSQL_DB')
+engine = create_engine("mysql+mysqlconnector://{}:{}@{}/{}".format(
+    STORE_MYSQL_USER,
+    STORE_MYSQL_PWD,
+    STORE_MYSQL_HOST,
+    STORE_MYSQL_DB
+))
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+def init_db():
+    """Initialize the database."""
+    Base.metadata.create_all(bind=engine)
