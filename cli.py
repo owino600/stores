@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import argparse
 from sqlalchemy.orm import sessionmaker
-from Storage.db_storage import __engine, init_db, SessionLocal
+from Storage.db_storage import engine, init_db, SessionLocal
 from current_stock import add_supplier, add_stock, receive_stock, issue_stock, list_stocks
 from utils import validate_positive
 import logging
