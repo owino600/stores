@@ -19,10 +19,10 @@ class DB_STORAGE:
     def __init__(self):
         """insantiate a DB Storage"""
         
-        STORE_MYSQL_USER = "root"
-        STORE_MYSQL_PWD = "Admin@123"
-        STORE_MYSQL_HOST = "127.0.0.1:3308"
-        STORE_MYSQL_DB = "dantedb"
+        STORE_MYSQL_USER = getenv('STORE_MYSQL_USER')
+        STORE_MYSQL_PWD = getenv('STORE_MYSQL_PWD')
+        STORE_MYSQL_HOST = getenv('STORE_MYSQL_HOST')
+        STORE_MYSQL_DB = getenv('STORE_MYSQL_DB')
         self.__engine = create_engine("mysql+mysqlconnector://{}:{}@{}/{}".format(
           STORE_MYSQL_USER,
           STORE_MYSQL_PWD,
@@ -59,10 +59,10 @@ class DB_STORAGE:
             return None
         return self.__session.query(classes[cls]).get(id)
 
-STORE_MYSQL_USER = "root"
-STORE_MYSQL_PWD = "admin@123"
-STORE_MYSQL_HOST = "127.0.0.1:3308"
-STORE_MYSQL_DB = "dantedb"
+STORE_MYSQL_USER = getenv('STORE_MYSQL_USER')
+STORE_MYSQL_PWD = getenv('STORE_MYSQL_PWD')
+STORE_MYSQL_HOST = getenv('STORE_MYSQL_HOST')
+STORE_MYSQL_DB = getenv('STORE_MYSQL_DB')
 engine = create_engine("mysql+mysqlconnector://{}:{}@{}/{}".format(
     STORE_MYSQL_USER,
     STORE_MYSQL_PWD,
