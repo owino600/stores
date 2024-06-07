@@ -85,7 +85,7 @@ class STOCK(Base):
         """
         return self.supplier.name if self.supplier else 'No Supplier'
     
-    def add_supplier(db: Session, name: str):
+def add_supplier(db: Session, name: str):
     supplier = Supplier(name=name)
     db.add(supplier)
     db.commit()
