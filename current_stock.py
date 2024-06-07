@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, Session
 from sqlalchemy.orm import relationship
 
 Base = declarative_base()
@@ -84,3 +84,40 @@ class STOCK(Base):
             str: The supplier details of the current stock.
         """
         return self.supplier.name if self.supplier else 'No Supplier'
+    
+    def add_supplier(db: Session, name: str):
+    supplier = Supplier(name=name)
+    db.add(supplier)
+    db.commit()
+    db.refresh(supplier)
+    print(f"Supplier {name} added with ID {supplier.id}")
+
+def add_stock(db: Session, item_name: str, quantity: int, supplier_id: int, unit_cost: float):
+    stock = STOCK(item_name=item_name, quantity=quantity, supplier_id=supplier_id, unit_cost=unit_cost)
+    db.add(stock)
+    db.commit()
+    db.refresh(stock)
+    print(f"Stock {item_name} added with ID {stock.id}")
+
+def receive_stock(db: Session, stock_id: int, quantity: int, unit_cost: float):
+    stock = db.query(STOCK).get(stock_id)
+    if stock:
+        stock.receive_stock(quantity, unit_cost)
+        db.commit()
+        print(f"Received {quantity} of {stock.item_name} at {unit_cost} each.")
+    else:
+        print(f"No stock found with ID {stock_id}")
+
+def issue_stock(db: Session, stock_id: int, quantity: int):
+    stock = db.query(STOCK).get(stock_id)
+    if stock:
+        stock.issue_stock(quantity)
+        db.commit()
+        print(f"Issued {quantity} of {stock.item_name}.")
+    else:
+        print(f"No stock found with ID {stock_id}")
+
+def list_stocks(db: Session):
+    stocks = db.query(STOCK).all()
+    for stock in stocks:
+        print(f"{stock.item_name}: {stock.quantity} units at {stock.unit_cost} each from Supplier {stock.supplier.name if stock.supplier else 'No Supplier'}")
