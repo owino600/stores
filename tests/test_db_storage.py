@@ -28,8 +28,9 @@ class TestDBStorage(unittest.TestCase):
 
     def tearDown(self):
         """Tear down the test database and session"""
-        self.session.close()
-        Base.metadata.drop_all(self.engine)
+        self.db_storage.close()
+        #self.session.close()
+        #Base.metadata.drop_all(self.engine)
 
     def test_new(self):
         """Test the new method"""
