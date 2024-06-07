@@ -20,20 +20,20 @@ def main():
     # Add stock
     parser_add_stock = subparsers.add_parser('add_stock', help='Add new stock')
     parser_add_stock.add_argument('item_name', type=str, help='Name of the item')
-    parser_add_stock.add_argument('quantity', type=validate_positive, help='Quantity of the item')
+    parser_add_stock.add_argument('quantity', type=int, help='Quantity of the item')
     parser_add_stock.add_argument('supplier_id', type=int, help='ID of the supplier')
     parser_add_stock.add_argument('unit_cost', type=float, help='Unit cost of the item')
 
     # Receive stock
     parser_receive_stock = subparsers.add_parser('receive_stock', help='Receive stock')
     parser_receive_stock.add_argument('stock_id', type=int, help='ID of the stock')
-    parser_receive_stock.add_argument('quantity', type=validate_positive, help='Quantity to receive')
+    parser_receive_stock.add_argument('quantity', type=int, help='Quantity to receive')
     parser_receive_stock.add_argument('unit_cost', type=float, help='Unit cost of the stock')
 
     # Issue stock
     parser_issue_stock = subparsers.add_parser('issue_stock', help='Issue stock')
     parser_issue_stock.add_argument('stock_id', type=int, help='ID of the stock')
-    parser_issue_stock.add_argument('quantity', type=validate_positive, help='Quantity to issue')
+    parser_issue_stock.add_argument('quantity', type=int, help='Quantity to issue')
 
     # List stocks
     parser_list_stocks = subparsers.add_parser('list_stocks', help='List all stocks')
