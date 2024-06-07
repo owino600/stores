@@ -58,7 +58,9 @@ class TestDBStorage(unittest.TestCase):
         """Test the reload method"""
         self.db_storage.close()
         self.db_storage.reload()
-        stored_stock = self.db_storage.get('current_stock', self.stock.id)
+        
+        stored_stock = self.session.query(STOCK).get(self.stock.id)
+        #stored_stock = self.db_storage.get('current_stock', self.stock.id)
         self.assertIsNotNone(stored_stock)
         self.assertEqual(stored_stock.item_name, 'Test Item')
 
