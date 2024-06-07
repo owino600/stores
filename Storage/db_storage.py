@@ -23,12 +23,7 @@ class DB_STORAGE:
         STORE_MYSQL_PWD = getenv('STORE_MYSQL_PWD')
         STORE_MYSQL_HOST = getenv('STORE_MYSQL_HOST')
         STORE_MYSQL_DB = getenv('STORE_MYSQL_DB')
-        self.__engine = create_engine("mysql+mysqlconnector://{}:{}@{}/{}".format(
-          STORE_MYSQL_USER,
-          STORE_MYSQL_PWD,
-          STORE_MYSQL_HOST,
-          STORE_MYSQL_DB  
-        ))
+        self.__engine = create_engine(f"mysql+mysqlconnector://{STORE_MYSQL_USER}:{STORE_MYSQL_PWD}@{STORE_MYSQL_HOST}/{STORE_MYSQL_DB}")
         
     def new(self, obj):
         """add the object to the current database session"""
@@ -63,12 +58,7 @@ STORE_MYSQL_USER = getenv('STORE_MYSQL_USER')
 STORE_MYSQL_PWD = getenv('STORE_MYSQL_PWD')
 STORE_MYSQL_HOST = getenv('STORE_MYSQL_HOST')
 STORE_MYSQL_DB = getenv('STORE_MYSQL_DB')
-engine = create_engine("mysql+mysqlconnector://{}:{}@{}/{}".format(
-    STORE_MYSQL_USER,
-    STORE_MYSQL_PWD,
-    STORE_MYSQL_HOST,
-    STORE_MYSQL_DB
-))
+engine = create_engine(f"mysql+mysqlconnector://{STORE_MYSQL_USER}:{STORE_MYSQL_PWD}@{STORE_MYSQL_HOST}/{STORE_MYSQL_DB}")
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def init_db():
